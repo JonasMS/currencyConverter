@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/Search.scss';
 
 const Search = ({ app, value, updateSearch, handleClick }) => (
   <div className="search">

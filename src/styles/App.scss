@@ -3,3 +3,23 @@
   height: 100%;
   margin: 0 auto;
 }
+
+.cards-container {
+  width: 50%;
+  height: 400px;
+  margin: 100px auto;
+}
+
+.card-container {
+  width: 50%;
+  height: 100%;
+  display: inline-block;
+
+    .card-left {
+      float: left;
+    }
+
+    .card-right {
+      float: right;
+    }
+}

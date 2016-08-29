@@ -21,8 +21,14 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <Search app={this} value={this.state.search} updateSearch={updateSearch} handleClick={handleSearch}/>
-          <RateCard rate="USD" value={this.state.rates.length ? this.state.rates[0].USD : ''} />
-          <RateCard rate="EUR" value={this.state.rates.length ? this.state.rates[0].EUR : ''}/>
+          <div className="cards-container">
+            <div className="card-container card-left">
+              <RateCard rate="USD" value={this.state.rates.length ? this.state.rates[0].USD : ''} />
+            </div>
+            <div className="card-container card-right">
+              <RateCard rate="EUR" value={this.state.rates.length ? this.state.rates[0].EUR : ''}/>
+            </div>
+          </div>
         </div>
       </div>
     );
