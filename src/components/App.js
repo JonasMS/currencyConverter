@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Search from './Search';
 import RateCard from './RateCard';
-import { updateSearch, handleSearch } from '../modules/eventHandlers'
+import { updateSearch, handleSearch, getCurDate } from '../modules/'
 import '../styles/App.scss';
 
 class App extends Component {
@@ -20,7 +20,13 @@ class App extends Component {
     return (
       <div className="App">
         <div className="container">
-          <Search app={this} value={this.state.search} updateSearch={updateSearch} handleClick={handleSearch}/>
+          <Search
+            app={this}
+            value={this.state.search}
+            updateSearch={updateSearch}
+            handleClick={handleSearch}
+            placeholder={getCurDate}
+            />
           <div className="cards-container">
             <div className="card-container card-left">
               <RateCard rate="USD" value={this.state.rates.length ? this.state.rates[0].USD : ''} />
