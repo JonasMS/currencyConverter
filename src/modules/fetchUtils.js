@@ -4,6 +4,11 @@ const emitErr = (res) => {
   throw err;
 };
 
+export const displayStatus = res => {
+  console.log(res.satus);
+  return res;
+}
+
 export const checkStatus = res => (res.status >= 200) && (res.status < 300) ? res : emitErr(res);
 
 export const parseJSON = res => res.json();

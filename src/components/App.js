@@ -8,7 +8,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      search: "",
+      search: getCurDate(),
       base: "USD",
       rates: [],
       error: "",
