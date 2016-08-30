@@ -38,7 +38,7 @@ export const handleSearch = (app, base, date) => {
   for (let i = -6; i < 6; i++) { // get preceding and following 6 months of data
     nextDate = calcDate(date, i);
     console.log('nextDate: ', nextDate);
-    if (compareDates(nextDate, curDate)) {
+    if (compareDates(nextDate, curDate)) { // conditional - don't search for dates past today
       fetches.push(fetchRate(app, base, nextDate));
       continue;
     }
@@ -47,7 +47,12 @@ export const handleSearch = (app, base, date) => {
 
   Promise.all(fetches)
     .then(rates => {
-      rates.sort((a, b) => !compareDates(a.date, b.date))
+      rates.sort((a, b) => {
+        if (a.date === b.date) {
+          return 0;
+        }
+        return compareDates(a.date, b.date) ? 1 : -1;
+    });
       console.log('rates: ', rates);
       app.setState({rates});
     });

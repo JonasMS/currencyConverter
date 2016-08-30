@@ -43,16 +43,15 @@ export const calcDate = (date, i) => {
 
 // return TRUE if occurs before or on b, else return false
 export const compareDates = (dateA, dateB) => {
-  if (dateA === dateB) {
-    return true;
-  }
-
+  const a = dateA.split('-');
   const b = dateB.split('-');
 
-  return dateA.split('-').reduce((occursBefore, date, idx) => {
-    if (!occursBefore) {
-      return date < b[idx];
+  for (let i = 0; i < a.length; i++) {
+    if (parseInt(a[i], 10) === parseInt(b[i], 10)) {
+      continue;
     }
-    return occursBefore;
-  }, false)
+    return parseInt(a[i], 10) < parseInt(b[i], 10);
+  }
+
+  return true;
 }
