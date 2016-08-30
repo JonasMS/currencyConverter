@@ -4,6 +4,12 @@
   margin: 0 auto;
   border: 2px solid black;
 
+    &.selected {
+      -webkit-box-shadow: 0 0 50px rgba(0, 180, 221, 0.30);
+      -mox-box-shadow: 0 0 50px rgba(0, 180, 221, 0.30);
+      box-shadow: 0 0 50px rgba(0, 180, 221, 0.30);
+    }
+
     .card-contents {
       width: 50%;
       height: 100%;

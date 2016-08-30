@@ -10,6 +10,7 @@ fetch(`https://api.fixer.io/${date}?base=${base}&symbols=USD,EUR`)
     .then(res => parseJSON(res))
 );
 
+
 // update state.search
 export const updateSearch = (app, e) => (
   app.setState({search: e.target.value})
@@ -41,4 +42,9 @@ export const handleSearch = (app, base, date) => {
       console.log('rates: ', rates);
       app.setState({ rates, targetRate: rates.length - 6 });
     });
+};
+
+export const handleCardClick = (app, base, date) => {
+  app.setState({base});
+  handleSearch(app, base, date);
 };

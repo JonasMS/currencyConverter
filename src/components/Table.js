@@ -1,7 +1,7 @@
 import React from 'react';
 import Row from './Row';
 import { dateToEnglish } from '../modules';
-import { STANDARD_VAL } from '../constants';
+import { USD, EUR, STANDARD_VAL } from '../constants';
 import '../styles/Table.scss';
 
 const getRate = (rate, spec) => (
@@ -13,8 +13,8 @@ const populateRows = (rates, targetRows) => (
       <Row
         values={[
           dateToEnglish(rate.date),
-          getRate(rate, "USA"),
-          getRate(rate, "EUR"),
+          getRate(rate, USD),
+          getRate(rate, EUR),
         ]}
         key={key}
         targetRow={targetRows.indexOf(key) > -1}

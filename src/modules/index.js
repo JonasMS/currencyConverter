@@ -1,5 +1,5 @@
 import { dateToEnglish, getCurDate, calcDate, compareDates } from './utils';
-import { updateSearch, handleSearch } from './eventHandlers';
+import { updateSearch, handleSearch, handleCardClick } from './eventHandlers';
 
 export {
   dateToEnglish,
@@ -8,4 +8,5 @@ export {
   compareDates,
   updateSearch,
   handleSearch,
+  handleCardClick,
 };
