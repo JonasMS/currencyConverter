@@ -1,4 +1,4 @@
-import months from '../constants';
+import { months } from '../constants';
 
 //ex. 8 ==> 08, 08 ==> 8
 const formatDate = date => {
@@ -14,7 +14,7 @@ const formatDate = date => {
 };
 
 // ex. 2016-28-8 --> Aug. 28, 2016
-export const dateToString = date => {
+export const dateToEnglish = date => {
   const dateArr = date.split('-');
   return `${months[formatDate(dateArr[1])]}. ${dateArr[2]}, ${dateArr[0]}`;
 }

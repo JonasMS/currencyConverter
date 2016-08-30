@@ -1,8 +1,8 @@
-import { dateToString, getCurDate, calcDate, compareDates } from './utils';
+import { dateToEnglish, getCurDate, calcDate, compareDates } from './utils';
 import { updateSearch, handleSearch } from './eventHandlers';
 
 export {
-  dateToString,
+  dateToEnglish,
   getCurDate,
   calcDate,
   compareDates,

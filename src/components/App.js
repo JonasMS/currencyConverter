@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Search from './Search';
 import RateCard from './RateCard';
+import Table from './Table';
 import { updateSearch, handleSearch, getCurDate } from '../modules/'
 import '../styles/App.scss';
 
@@ -29,12 +30,16 @@ class App extends Component {
             />
           <div className="cards-container">
             <div className="card-container card-left">
-              <RateCard rate="USD" value={this.state.rates.length ? this.state.rates[0].USD : ''} />
+              <RateCard rate="USD" value={this.state.rates.length ? this.state.rates[0].rates.USD || '1' : ''} />
             </div>
             <div className="card-container card-right">
-              <RateCard rate="EUR" value={this.state.rates.length ? this.state.rates[0].EUR : ''}/>
+              <RateCard rate="EUR" value={this.state.rates.length ? this.state.rates[0].rates.EUR || '1' : ''}/>
             </div>
           </div>
+          <Table
+            headers={["Date", "USD", "EUR"]}
+            rows={this.state.rates}
+          />
         </div>
       </div>
     );
