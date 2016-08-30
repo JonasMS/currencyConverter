@@ -1,6 +1,7 @@
 import React from 'react';
 import Row from './Row';
 import { dateToEnglish } from '../modules';
+import '../styles/Table.scss';
 
 const getRate = (rate, spec) => (
   rate.rates[spec] ? rate.rates[spec] : "1"
@@ -23,7 +24,7 @@ const Table = ({headers, rows}) => (
   <table>
     <thead>
       <tr>
-        {headers.map(header => <th>{header}</th>)}
+        {headers.map((header, key) => <th key={key}>{header}</th>)}
       </tr>
     </thead>
     <tbody>

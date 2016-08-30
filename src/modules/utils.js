@@ -7,16 +7,16 @@ const formatDate = date => {
   }
 
   if (date[0] === '0') {
-  return date[1];
+  return parseInt(date[1]);
   }
 
   return date.length === 1 ? `0${date}` : date;
 };
 
-// ex. 2016-28-8 --> Aug. 28, 2016
+// ex. 2016-8-28 --> Aug. 28, 2016
 export const dateToEnglish = date => {
   const dateArr = date.split('-');
-  return `${months[formatDate(dateArr[1])]}. ${dateArr[2]}, ${dateArr[0]}`;
+  return `${months[formatDate(dateArr[1]) - 1]}. ${dateArr[2]}, ${dateArr[0]}`;
 }
 
 export const getCurDate = (date = new Date) => (
