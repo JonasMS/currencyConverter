@@ -1,13 +1,14 @@
 import React from 'react';
 import Row from './Row';
 import { dateToEnglish } from '../modules';
+import { STANDARD_VAL } from '../constants';
 import '../styles/Table.scss';
 
 const getRate = (rate, spec) => (
-  rate.rates[spec] ? rate.rates[spec] : "1"
+  rate.rates[spec] ? rate.rates[spec] : STANDARD_VAL
 );
 
-const populateRows = rates => (
+const populateRows = (rates, targetRows) => (
   rates.map((rate, key) => (
       <Row
         values={[
@@ -16,11 +17,12 @@ const populateRows = rates => (
           getRate(rate, "EUR"),
         ]}
         key={key}
+        targetRow={targetRows.indexOf(key) > -1}
       />
   ))
 );
 
-const Table = ({headers, rows}) => (
+const Table = ({headers, rows, targetRows}) => (
   <table>
     <thead>
       <tr>
@@ -28,7 +30,7 @@ const Table = ({headers, rows}) => (
       </tr>
     </thead>
     <tbody>
-      {populateRows(rows)}
+      {populateRows(rows, targetRows)}
     </tbody>
   </table>
 );

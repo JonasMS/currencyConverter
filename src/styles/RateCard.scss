@@ -1,5 +1,24 @@
 .rate-card {
   width: 200px;
+  height: 100%;
   margin: 0 auto;
   border: 2px solid black;
+
+    .card-contents {
+      width: 50%;
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+    }
+
+    .currency-sign {
+      font-size: 55px;
+      vertical-align: middle;
+    }
+
+    .currency-value {
+      font-size: 36px;
+      margin-left: 10px;
+    }
 }

@@ -8,20 +8,6 @@ export const fetchRate = (app, base, date) => (
 fetch(`https://api.fixer.io/${date}?base=${base}&symbols=USD,EUR`)
     .then(res => checkStatus(res))
     .then(res => parseJSON(res))
-    // .then(result => {
-    //   console.log('RESULT: ', result);
-    //   return result;
-    // })
-    // .then(result => {
-    //   console.log(result);
-    //   const rate = app.state.base === USD ?
-    //     { date, USD: "1", EUR: result.rates.EUR.toString(10) } : { date, USD: result.reates.USD.toString(10), EUR: "1" };
-
-    //   const rates = app.state.rates.reduce()
-
-
-    //   app.setState({rates})
-    // });
 );
 
 // update state.search
@@ -35,9 +21,8 @@ export const handleSearch = (app, base, date) => {
   const curDate = getCurDate();
   let nextDate;
 
-  for (let i = -6; i < 6; i++) { // get preceding and following 6 months of data
+  for (let i = -5; i < 6; i++) { // get preceding and following 6 months of data
     nextDate = calcDate(date, i);
-    console.log('nextDate: ', nextDate);
     if (compareDates(nextDate, curDate)) { // conditional - don't search for dates past today
       fetches.push(fetchRate(app, base, nextDate));
       continue;
@@ -54,6 +39,6 @@ export const handleSearch = (app, base, date) => {
         return compareDates(a.date, b.date) ? 1 : -1;
     });
       console.log('rates: ', rates);
-      app.setState({rates});
+      app.setState({ rates, targetRate: rates.length - 6 });
     });
 };

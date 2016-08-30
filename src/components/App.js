@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Search from './Search';
 import RateCard from './RateCard';
 import Table from './Table';
-import { updateSearch, handleSearch, getCurDate } from '../modules/'
+import { updateSearch, handleSearch, getCurDate, dateToEnglish } from '../modules/'
+import { USD, EUR, STANDARD_VAL } from '../constants';
 import '../styles/App.scss';
 
 class App extends Component {
@@ -10,14 +11,17 @@ class App extends Component {
     super();
     this.state = {
       search: getCurDate(),
-      base: "USD",
+      base: USD,
       rates: [],
+      targetRate: null,
       error: "",
     }
   }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
+    const { targetRate, rates } = this.state;
+
     return (
       <div className="App">
         <div className="container">
@@ -29,16 +33,26 @@ class App extends Component {
             placeholder={getCurDate}
             />
           <div className="cards-container">
+            <div className="searched-date">{rates.length ? dateToEnglish(rates[targetRate].date) : ""}</div>
             <div className="card-container card-left">
-              <RateCard rate="USD" value={this.state.rates.length ? this.state.rates[0].rates.USD || '1' : ''} />
+              <RateCard
+                rate="USD"
+                currency={"$"}
+                value={rates.length ? rates[targetRate].rates.USD || STANDARD_VAL  : ''}
+              />
             </div>
             <div className="card-container card-right">
-              <RateCard rate="EUR" value={this.state.rates.length ? this.state.rates[0].rates.EUR || '1' : ''}/>
+              <RateCard
+                rate="EUR"
+                currency={"€"}
+                value={rates.length ? rates[targetRate].rates.EUR || STANDARD_VAL : ''}
+                />
             </div>
           </div>
           <Table
             headers={["Date", "USD", "EUR"]}
-            rows={this.state.rates}
+            rows={rates}
+            targetRows={[targetRate]}
           />
         </div>
       </div>

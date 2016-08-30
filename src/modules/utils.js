@@ -1,4 +1,4 @@
-import { months } from '../constants';
+import { MONTHS } from '../constants';
 
 //ex. 8 ==> 08, 08 ==> 8
 const formatDate = date => {
@@ -16,7 +16,7 @@ const formatDate = date => {
 // ex. 2016-8-28 --> Aug. 28, 2016
 export const dateToEnglish = date => {
   const dateArr = date.split('-');
-  return `${months[formatDate(dateArr[1]) - 1]}. ${dateArr[2]}, ${dateArr[0]}`;
+  return `${MONTHS[formatDate(dateArr[1]) - 1]}. ${dateArr[2]}, ${dateArr[0]}`;
 }
 
 export const getCurDate = (date = new Date) => (

@@ -1,4 +1,17 @@
 table {
   width: 50%;
   margin: 0 auto;
+
+  tr {
+    outline: thin solid;
+  }
+
+  td {
+    text-align: center;
+  }
+
+  .target-rate {
+    background-color: rgba(0, 180, 221, 0.30);
+    outline: thin solid rgba(0, 180, 221, 0.30);
+  }
 }

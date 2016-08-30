@@ -1,10 +1,12 @@
 import React from 'react';
 import '../styles/RateCard.scss';
 
-const RateCard = ({rate, value}) => (
+const RateCard = ({rate, currency, value}) => (
   <div className="rate-card">
-    <span className="currency-sign"></span>
-    <span className="currenc-amount">{value}</span>
+    <div className="card-contents">
+      <span className="currency-sign">{currency}</span>
+      <span className="currency-value">{value.toString().slice(0, 5)}</span>
+    </div>
   </div>
 );
 
