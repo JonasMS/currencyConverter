@@ -30,7 +30,7 @@ export const calcDate = (date, i) => {
   const curMonth = parseInt(dateArr[1], 10) + i;
 
   if (curMonth <= 0) {
-    return `${parseInt(dateArr[0]) - 1}-${formatDate(12 - curMonth)}-${dateArr[2]}`;
+    return `${parseInt(dateArr[0]) - 1}-${formatDate(12 + curMonth)}-${dateArr[2]}`;
   }
 
   if (curMonth > 12) {
@@ -41,7 +41,18 @@ export const calcDate = (date, i) => {
   return dateArr.join('-');
 };
 
-// return TRUE if occurs before b, else return false
-export const compareDates = (a, b) => {
+// return TRUE if occurs before or on b, else return false
+export const compareDates = (dateA, dateB) => {
+  if (dateA === dateB) {
+    return true;
+  }
 
+  const b = dateB.split('-');
+
+  return dateA.split('-').reduce((occursBefore, date, idx) => {
+    if (!occursBefore) {
+      return date < b[idx];
+    }
+    return occursBefore;
+  }, false)
 }
