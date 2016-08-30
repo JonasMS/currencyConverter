@@ -10,7 +10,6 @@ fetch(`https://api.fixer.io/${date}?base=${base}&symbols=USD,EUR`)
     .then(res => parseJSON(res))
 );
 
-
 // update state.search
 export const updateSearch = (app, e) => (
   app.setState({search: e.target.value})

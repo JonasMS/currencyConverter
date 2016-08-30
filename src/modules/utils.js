@@ -1,4 +1,4 @@
-import { MONTHS } from '../constants';
+import { MONTHS, DAYS_IN_MONTH } from '../constants';
 
 //ex. 8 ==> 08, 08 ==> 8
 const formatDate = date => {
@@ -27,18 +27,21 @@ export const getCurDate = (date = new Date) => (
 // get's a preceding or following month, changes year if limit exceeded
 export const calcDate = (date, i) => {
   const dateArr = date.split('-');
-  const curMonth = parseInt(dateArr[1], 10) + i;
+  let curYear = parseInt(dateArr[0], 10);
+  let curMonth = parseInt(dateArr[1], 10) + i;
+  let curDay = parseInt(dateArr[2], 10);
 
   if (curMonth <= 0) {
-    return `${parseInt(dateArr[0]) - 1}-${formatDate(12 + curMonth)}-${dateArr[2]}`;
+    curYear--;
+    curMonth += 12;
+    // curDay = Math.min(parseInt(dateArr[2], 10), DAYS_IN_MONTH[curMonth - 1]);
+    // return `${curYear}-${formatDate(curMonth)}-${formatDate(curDay)}`;
+  } else  if (curMonth > 12) {
+    curYear++;
+    curMonth -= 12;
   }
-
-  if (curMonth > 12) {
-    return `${parseInt(dateArr[0]) + 1}-${formatDate(curMonth - 12)}-${dateArr[2]}`
-  }
-
-  dateArr[1] = formatDate(curMonth);
-  return dateArr.join('-');
+    curDay = Math.min(curDay, DAYS_IN_MONTH[curMonth - 1]);
+    return `${curYear}-${formatDate(curMonth)}-${formatDate(curDay)}`;
 };
 
 // return TRUE if occurs before or on b, else return false
